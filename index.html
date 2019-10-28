@@ -1,0 +1,469 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico:400' rel='stylesheet' type='text/css'>
+	<!-- Credit goes to Pete Rojwongsuriya for his text rotator. I have adapted his methods.  -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="jquery.simple-text-rotator.js"></script>
+  <style>
+    html {
+      height: 1000%;
+    }
+		/* body section will have a black background, rel pos, full height, centered text */
+    body {
+      background: black;
+      padding: 0;
+      text-align: center;
+      font-family: 'open sans';
+      position: relative;
+      margin: 0;
+      height: 100%;
+    }
+		/* wrapper to format text: specifically for rotating text */
+    .wrapper {
+    	height: auto !important;
+    	height: 50%;
+    	margin: 0 auto;
+    	overflow: hidden;
+			padding-bottom: 10px;
+    }
+		/* spacing of h1,h2 */
+    h1, h2 {
+      width: 100%;
+      float: left;
+    }
+		/* h1 margin, color */
+    h1 {
+      margin-top: 500px;
+      color: #000;
+      margin-bottom: 5px;
+    }
+		/* main text formatting */
+    .main {
+      float: left;
+      width: 100%;
+      margin: 0 auto;
+    }
+		/* h1 in main formatting */
+    .main h1 {
+      padding:50px 0px;
+      float: left;
+      width: 100%;
+      font-size: 45px;
+      font-weight: 100;
+      color: black;
+      margin: 0;
+    }
+		/* h2 in main formating. Different from h1. Bold font. */
+		.main h2 {
+      padding:50px 0px;
+      float: center;
+      width: 100%;
+			font-family: open sans;
+      font-size: 50px;
+      font-weight: 400;
+      color: white;
+      margin: 0;
+    }
+		/* h3 in main formating. Different from h1. About me section text */
+		.main h3 {
+			padding-left: 330px;
+      float: center;
+      width: 80%;
+			font-family: open sans;
+      font-size: 25px;
+      font-weight: 100;
+      color: white;
+      margin: 50;
+    }
+		/* Rotating text */
+    .main h1.demo1 {
+      background: #white;
+    }
+		/* Rotating text */
+		.main h2.demo1 {
+      background: #white;
+    }
+		/* Background used  */
+		.bg {
+			/* The image used */
+			background-image: url("https://images.pexels.com/photos/325044/pexels-photo-325044.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+
+			/* Full height */
+			height: 8%;
+
+			/* Center and scale the image nicely */
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		/* Backgound container. No margin, absolute position. */
+		.containerbg {
+		  position: absolute;
+		  margin: 1px;
+		  width: auto;
+			background-color: black;
+		}
+
+		.container {
+	  	position: relative;
+	  	width: 50%;
+	  	display: in-line block;
+		}
+
+		.image {
+		  display: block;
+		  width: 100%;
+		  height: auto;
+		}
+		/* overlay used when hovering over pictures; black background; white text */
+		.overlay {
+		  position: absolute;
+		  top: 0;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  height: 100%;
+		  width: 130%;
+		  opacity: 0;
+		  transition: .5s ease;
+		  background-color: black;
+		}
+		/* overlay used when hovering over pictures; black background; white text */
+		.overlay2 {
+		  position: absolute;
+		  top: 0;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  height: 100%;
+		  width: 180%;
+		  opacity: 0;
+		  transition: .5s ease;
+		  background-color: black;
+		}
+		/* overlay used when hovering over pictures; black background; white text */
+		.overlay3 {
+		  position: absolute;
+		  top: 0;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  height: 100%;
+		  width: 200%;
+		  opacity: 0;
+		  transition: .5s ease;
+		  background-color: black;
+		}
+		/* overlay used when hovering over pictures; black background; white text */
+		.overlay4 {
+		  position: absolute;
+		  top: 0;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  height: 100%;
+		  width: 300%;
+		  opacity: 0;
+		  transition: .5s ease;
+		  background-color: black;
+		}
+		.overlay5 {
+		  position: absolute;
+		  top: 0;
+		  bottom: 0;
+		  left: 0;
+		  right: 0;
+		  height: 100%;
+		  width: 400%;
+		  opacity: 0;
+		  transition: .5s ease;
+		  background-color: black;
+		}
+		/* container and overlay match */
+		.container:hover .overlay {
+		  opacity: 1;
+		}
+		/* container and overlay match */
+		.container:hover .overlay2 {
+		  opacity: 1;
+		}
+			/* container and overlay match */
+		.container:hover .overlay3 {
+		  opacity: 1;
+		}
+		/* container and overlay match */
+		.container:hover .overlay4 {
+		  opacity: 1;
+		}
+		.container:hover .overlay5 {
+		  opacity: 1;
+		}
+		/* class used to define the text in rotating text */
+		.text {
+		  color: white;
+		  font-size: 20px;
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+			/* The following methods were adopted from  Super Simple Text Rotator by Pete R. */
+		  -webkit-transform: translate(-50%, -50%);
+		  -ms-transform: translate(-50%, -50%);
+		  transform: translate(-50%, -50%);
+		  text-align: left;
+		}
+		/* box border spacing */
+		* {
+		  box-sizing: border-box;
+		}
+		/* the column spacing and width for column 1 */
+		.column {
+		  float: right;
+		  width: 33%;
+		  padding-left: 150px;
+			padding-right: 150px;
+			word-wrap:
+		}
+		/* the column spacing and width for column 2 */
+		.column2 {
+		  float: right;
+		  width: 50%;
+		  padding-left: 100px;
+			word-wrap:
+		}
+		/* the column spacing and width for column 3 */
+		.column3 {
+		  float: middle;
+		  width: 100%;
+		  padding-left: 100px;
+			word-wrap:
+		}
+
+		/* Clearfix (clear floats) */
+		.row::after {
+		  content: "";
+		  clear: both;
+		  display: table;
+		}
+
+	</style>
+	<!-- the following script has been adopted from Super Simple Text Rotator by Pete R. I am not able to code something this clever... yet  -->
+	<link rel="stylesheet" type="text/css" href="simpletextrotator.css" />
+	<script>
+		// this is the animation for the rotating text in section 1. The animation is fade.
+	  $(document).ready(function(){
+			$(".demo1 .rotate").textrotator({
+        animation: "fade",
+        speed: 4000
+      });
+		});
+		// this is the animation for the rotating text in section 4. The animation is dissolve.
+		$(document).ready(function(){
+			$(".demo2 .rotate").textrotator({
+        animation: "dissolve",
+        speed: 4000
+      });
+		});
+	</script>
+	</head>
+	<body>
+		<!-- SECTION ONE OF THE WEBSITE: BACKGROUND PICTURE AND ROTATING TEXT ABOUT ME -->
+
+		<!-- the background picture at the top of the marriage  -->
+		<div class="bg">
+			<div class="containerbg">
+			</div>
+		</div>
+
+		<!-- rotating text that describes who I am  -->
+	  <div class="wrapper">
+		  <div class="main">
+		    <h1 class="demo1" style="color:white;">My name is Gokul and I'm <span class="rotate"> a freshman at Dartmouth, an eager learner, perpetually sleep deprived, a hardworker</span></h1>
+	    </div>
+	  </div>
+		<!-- END OF SECTION ONE. -->
+
+	<!-- SECTION TWO OF THE WEBPAGE: MY EXPIRIENCE WITH ICONS  -->
+
+		<!-- "Expirience" heading  -->
+		<div class="wrapper">
+		  <div class="main">
+		    <h2> Expirience </h2>
+	    </div>
+	  </div>
+
+		<!-- Row of icons describing my different expiriences  -->
+		<div class="row">
+			<!-- Icon 1 - OHSU -->
+		  <div class="column">
+				<div class="container">
+			  	<img src= "ohsu.png" alt="Avatar" class="image" style= "width:180%;">
+					<div class="overlay4">
+						<!-- this is the class that allows me to view the text when mouse hovers -->
+			    	<div class="text">  Bioinformatics Intern <br>
+						<font size = 2> Languages Learned: Javascript, HTML, CSS
+							<br><br> June 2019 - September 2019</div>
+			  	</div>
+				</div>
+		  </div>
+
+			<!-- Icon two  -->
+		  <div class="column">
+				<div class="container">
+			  	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/FEMA_logo.svg/1580px-FEMA_logo.svg.png" alt="Avatar" class="image" style= "width:400%;">
+			  	<div class="overlay5">
+			    	<div class="text"> Regional Representative <br>
+						<font size = 2> June 2018 - Present </div>
+			  	</div>
+				</div>
+		  </div>
+
+			<!-- Icon three  -->
+		  <div class="column">
+				<div class="container">
+			  	<img src= "https://i.pinimg.com/originals/72/87/67/728767ffcff36a9462c91a5a61955c2c.png" alt="Avatar" class="image" style="width:300%;">
+					<div class="overlay4">
+			    	<div class="text"> Research Assistant <br>
+						<font size = 2> Languages Learned: MATLAB
+						<br><br>September 2019 - Present </div>
+			  	</div>
+				</div>
+			</div>
+		</div>
+		<!-- end of row of icons -->
+	<!-- END OF SECTION 2 -->
+
+	<!-- BEGGING OF THIRD SECTION: COURSE WORK -->
+
+		<!-- heading "Relavent Coursework" -->
+		<div class="wrapper">
+			<div class="main">
+				<h2> Relevant Coursework </h2>
+			</div>
+		</div>
+
+		<!-- row with images of courses  -->
+		<div class="row">
+			<!-- Image 1  -->
+			<div class="column2">
+				<div class="container">
+					<img src= "http://www.dartblog.com/image/Tom%20Cormen1.jpg" alt="Avatar" class="image" style="width:180%;">
+					<div class="overlay2">
+						<div class="text"> Computer Science 1
+						<br>
+						<font size = 2> Languages Learned: Python
+						<br> <br> I have had the privillage of taking CS 1 with professor Cormen.
+						<br> He is one of my inspirations in CS, and I've learned all sorts of new concepts because of him.
+							<br> We've completed projects with incredibly varied difficulties - from small games to large scale encryption - in order to better understand Python. 
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Image 2 -->
+			<div class="column2">
+				<div class="container">
+					<img src="https://yt3.ggpht.com/a/AGF-l78UX7dAAS_EiP98m5xOhv38UyJN26pl7xsD8Q=s900-c-k-c0xffffffff-no-rj-mo" alt="Avatar" class="image" style= "width:220%;">
+					<div class="overlay3">
+						<div class="text"> AP Computer Science A
+						<br> <font size = 2> Languages Learned: Java
+						<br><br> A fun but challenging class that I took with Mr. Smith at West Salem Highschool.
+						<br> We worked on a number of projects ranging from simple algorithims to full fledged games of snake.
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		<!-- end of picture row -->
+	<!-- END OF THIRD SECTION. -->
+
+	<!-- BEGGINING OF FOURTH SECTION: ABOUT ME -->
+		<div class="wrapper">
+			<div class="main">
+				<h2> Hi, I'm Gokul. </h2>
+			</div>
+		</div>
+
+	<!-- two picture row  -->
+	<div class="row">
+		<!-- picture 1 -  me and finn  -->
+		<div class="column">
+			<div class="container">
+				<img src= "IMG_9035.jpg" class = "image" alt="Avatar" style="width:300%">
+				<div class="overlay4">
+					<div class="text"> Pictured: Me (left), Finn (Right) <br>
+					<font size = 2> This was taken during a face mask session.
+						<br>Finn is my best friend at Dartmouth.
+						<br> I'm ineffably grateful for him.</div>
+				</div>
+			</div>
+		</div>
+		<!-- picture 2 - 8th grade me because I don't have a more recent photo  -->
+		<div class="column">
+			<div class="container">
+				<img src="UNADJUSTEDNONRAW_thumb_158.jpg" alt="Avatar" class="image" style= "width:300%;">
+				<div class="overlay4">
+					<div class="text"> Pictured: Me <br>
+					<font size = 2> Eigth Grade Graduation Ceremony.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column">
+			<div class="container">
+				<img src= "IMG_9101.png" class = "image" alt="Avatar" style="width:300%">
+				<div class="overlay4">
+					<div class = "text">Pictured: Me (left), Finn (right)
+						<br> <font size = 2> Me destroying Finn at FIFA.
+						<br>He lost.
+						<br> Still think he's cool.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- end of the row of pictures -->
+
+		<!-- header section of the about me section -->
+	<div class="wrapper">
+		<div class="main">
+			<h1 style="color:white"> I'm a '23 from Salem, Oregon. </h1>
+		</div>
+	</div>
+
+	<!-- rotating text about what I like and enjoy doing -->
+	<div class="wrapper">
+		<div class="main">
+			<h1 class="demo2" style="color:#7BD5FF"> I love to <span class="rotate"> read manga, produce trap instrumentals, lift weights, play piano, observe memes, do flips on trampolines</span></h1>
+		</div>
+	</div>
+
+	<!-- rotating text about things I dislike and dislike doing  -->
+		<div class="wrapper">
+			<div class="main">
+				<h1 class="demo2" style="color:#FFA491;"> I dislike <span class="rotate"> cardio, the fact that FOCO closes at 8:30, B- medians, the fact that Kid Cudi hasn't made a new album </span></h1>
+			</div>
+		</div>
+	<!-- text about myself -->
+		<div class="wrapper">
+			<div class="main">
+				<!-- using the h3 heading so that I can center the text in a specific way -->
+				<h3> I first developed an interest in coding around 10th grade, but after taking AP Computer Science, I swore that I would never touch anything
+					related to CS ever again. After arriving at Dartmouth, my interest was peaked once again while taking Computer Science 1 with professor Cormen. Specifically,
+					I grew an interest in using CS to further causes in social justice, politics, and economics.
+					<br> <br><br>
+					<!-- easy way to break line -->
+					I want to hone my development skills while at DALI so that I can more effectivley champion the causes that I support: from  education reform to international politics.
+					That is, after all, the beauty of design, and ultimately development -- the ability to spread messages in the ways you desire.
+					<br><br> <br>
+					<!-- easy way to break line -->
+					I'm unbelivably excited to work at DALI. Whether this coming term (If I'm lucky) or the one following, the chance to work with a group of unimaginably creative,
+					techincally skilled, and kind individuals is something that I wouldn't pass up in my dreams. I'm looking forward to the late nights, the stress,
+					and the challenges that accompany working in groups to solve problems never encountered before.
+				 </h3>
+			</div>
+		</div>
+		<!-- END OF FOURTH SECTION-->
+	</body>
+</html>
