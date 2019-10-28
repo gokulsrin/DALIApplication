@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script src='js/fhir-client.js'></script>
+    <script>
+      FHIR.oauth2.authorize({
+        'client_id': 'de0f399f-85a3-4ecf-b573-0ced69c37298',
+        'scope':  'patient/Patient.read patient/Condition.read',
+        'redirect_uri': 'https://OHSU-Smart-on-FHIR-Test--gokulsrin.repl.co'
+      });
+    </script>
+    <div>Trying to launch.html ...</div>
+  </body>
+</html>
