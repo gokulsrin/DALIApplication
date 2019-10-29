@@ -3,10 +3,7 @@
 # 10/22/19
 
 #2-d array I'm using
-ocean = [[1, 1, 1, 1, 0],
-         [1, 1, 0, 1, 0],
-         [1, 1, 0, 0, 0],
-         [0, 0, 0, 0, 0]]
+ocean = [1, 1, 1, 1, 0]
 
 
 # depth first searching algorithm
