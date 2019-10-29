@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!-- Gokul Srinivasan - This is a Patient Data retrival program that accesses Fhir objects which are patient data objects and compiles them and displays them
+using jquery and bootstrap and smart on fhir
+8/20/19 -->
+
+<html>
+  <head>
+    <title> FHIR App Redirected</title>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/fhir-client.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+      /* fixing button that prompts user to login */
+      html {box-sizing: border-box;}
+      *, *:before, *:after {box-sizing: inherit;}
+      footer{position:fixed; bottom:0.5vw; right:0.5vw;}
+    </style>
+
+  </head>
+  <body>
+
+    <div id="main" class="container"></div>
+
+  <script>
+    // list of fhir objects containing patient data
+    var myApp = {}
+
+    $(document).ready(function(){
+      // getting authorization, creating fhirclient
+      getFHIR()
+    })
+
+    function getFHIR(){
+        FHIR.oauth2.ready(function (fhirClient) {
+            myApp.smart = fhirClient;
+            // retreiving all fhir objects
+            getAllFHIR()
+            onReady()
+          }, function(){ alert("error") })
+    }
+    // retrieves all conditions using smart fetchAll method
+    function getAllFHIR(){
+           $("#main").html("<div class='alert alert-info'>Getting your Conditions, please be patient</div>")
+
+           $.when(
+              myApp.smart.patient.api.fetchAll({type: "Condition", query:{"category":"diagnosis"}})
+            ).then(function (data) {
+              // renders the data for the user to see
+              render(data)
+            }, function(error){ console.log(error) })
+    }
+
+
+    function render(data){
+
+      console.log(data)
+      // displays on screen
+      $("#main").html("<div class='alert alert-success'>Got your medical history, now processing ...</div>")
+      // appends list to include each condition
+      var toInsert = ""
+
+      _.each(data, function(val,index){
+        toInsert += "<div class='row alert'>"+val.code.text+"</div>"
+      })
+      // shows all of the patients conditions
+      $("#main").html(toInsert)
+    }
+  </script>
+
+  </body>
+
+</html>
